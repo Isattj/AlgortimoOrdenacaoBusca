@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <chrono>
 
 
 using namespace std;
@@ -28,8 +29,7 @@ vector<int> lerBinario(const string nomeArquivo){
     return vec;
 }
 
-bool buscaSqequencial(const vector<int>& v, int chave, long comp){
-    comp = 0;
+bool buscaSequencial(const vector<int>& v, int chave, long& comp){
     int n = v.size();
     for(int i = 0; i < n; i++){
         comp++;
@@ -40,8 +40,7 @@ bool buscaSqequencial(const vector<int>& v, int chave, long comp){
     return false;
 }
 
-bool buscaBinaria(const vector<int>& v, int chave, long comp){
-    comp = 0;
+bool buscaBinaria(const vector<int>& v, int chave, long& comp){
     int n = v.size();
     int inicio = 0;
     int fim = n - 1;
@@ -84,5 +83,33 @@ int main(){
         {"Valor Inexistente", valInexistente},
     };
 
-    
+    for(int i = 0; i < 2; i++){
+        cout << "Realizacao do teste com um " << teste[i].nome << ": " << teste[i].valor << endl;
+
+        long comparacoesSeq = 0;
+        auto inicioSeq = chrono::high_resolution_clock::now();
+        buscaSequencial(vetor, teste[i].valor, comparacoesSeq);
+        auto fimSeq = chrono::high_resolution_clock::now();;
+        double tempoSeq = chrono::duration_cast<chrono::microseconds>(fimSeq - inicioSeq).count() / 1000.0;
+
+        cout << "Busca sequencial:" << endl;
+        cout << "Tempo -> " << tempoSeq << "ms" << endl;
+        cout << "Comparacoes -> " <<comparacoesSeq << endl;
+        cout << endl;
+
+
+        long comparacoesBin = 0;
+        auto inicioBin = chrono::high_resolution_clock::now();
+        buscaBinaria(vecOrdenado, teste[i].valor, comparacoesBin);
+        auto fimBin = chrono::high_resolution_clock::now();;
+        double tempoBin = chrono::duration_cast<chrono::microseconds>(fimBin - inicioBin).count() / 1000.0;
+
+        cout << "Busca binaria:" << endl;
+        cout << "Tempo -> " << tempoBin << "ms" << endl;
+        cout << "Comparacoes -> " <<comparacoesBin << endl;
+        cout << endl;
+
+    }
+
+    return 0;
 }

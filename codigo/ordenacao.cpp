@@ -7,8 +7,8 @@
 using namespace std;
 
 struct Metricas{
-    long comparacoes = 0;
-    long trocas = 0;
+    long long comparacoes = 0;
+    long long trocas = 0;
     double tempo = 0.0;
 }; typedef struct Metricas metricas;
 
@@ -125,18 +125,20 @@ void executarTeste(const string nomeArquivo, void (*algoritmo)(vector<int>&, Met
 
     metricas.tempo = chrono::duration_cast<chrono::milliseconds>(end-start).count();
 
-    cout << "Apresentando os resultados obtidos para a ordenação " << nomeAlgoritmo << " no arquivo " << nomeArquivo << endl;
+    cout << "Apresentando os resultados obtidos para a ordenacao " << nomeAlgoritmo << " no arquivo " << nomeArquivo << endl;
     cout << "Tamanho: " << vetor.size() << endl;
-    cout << "Tempo de execução: " << metricas.tempo << endl;
-    cout << "Comparações: " << metricas.comparacoes << endl;
+    cout << "Tempo de execucao: " << metricas.tempo << endl;
+    cout << "Comparacoes: " << metricas.comparacoes << endl;
     cout << "Trocas: " << metricas.trocas << endl;
+    cout << endl;
+
 }
 
 int main(){
     string arquivos[] = {
-        "Pequeno_Aleatorio.bin", "Pequeno_Crescente.bin", "Pequeno_Decrescente.bin",
-        "Medio_Aleatorio.bin", "Medio_Crescente.bin", "Medio_Decrescente.bin",
-        "Grande_Aleatorio.bin", "Grande_Crescente.bin", "Grande_Decrescente.bin"
+        "Pequeno_aleatorio.bin", "Pequeno_crescente.bin", "Pequeno_decrescente.bin",
+        "Medio_aleatorio.bin", "Medio_crescente.bin", "Medio_decrescente.bin",
+        "Grande_aleatorio.bin", "Grande_crescente.bin", "Grande_decrescente.bin"
     };
 
     vector<Algoritmos> algoritmos = {
