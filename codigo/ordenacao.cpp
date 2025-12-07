@@ -98,16 +98,16 @@ void bubbleSortPadrao(vector<int>& v, Metricas& m){
 
 void bubbleSortOtimizado(vector<int>& v, Metricas& m){
     int tamAux = v.size();
-    int flag = 1;
+    int flage = 1;
 
-    while(flag){
-        flag = 0;
+    while(flage){
+        flage = 0;
         for(int j = 1; j < tamAux; j++){
             m.comparacoes++;
             if(v[j] < v[j-1]){
                 swap(v[j], v[j-1]);
                 m.trocas++;
-                flag = 1;
+                flage = 1;
             }
         } tamAux--;
     }
